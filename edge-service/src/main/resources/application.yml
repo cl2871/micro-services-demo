@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: edge-service
+
+security:
+  oauth2:
+#    client:
+#      accessTokenUri: http://localhost:9999/oauth/token
+#      userAuthorizationUri: http://localhost:9999/oauth/authorize
+#      clientId: reader
+#      clientSecret: readerSecret
+#      scope: read
+    resource:
+      jwt:
+        key-value: 123
+
+zuul:
+  sensitive-headers: Cookie,Set-Cookie
+  routes:
+    food-catalog-service:
+      path: /food-catalog-service/**
+      url: http://localhost:8080/
+    oauth:
+      path: /oauth-service/**
+      url: http://localhost:9999/
