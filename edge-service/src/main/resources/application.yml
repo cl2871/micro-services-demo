@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8765
 
 spring:
   application:
@@ -19,10 +19,11 @@ security:
 
 zuul:
   sensitive-headers: Cookie,Set-Cookie
+  prefix: /api
   routes:
     food-catalog-service:
-      path: /food-catalog-service/**
-      url: http://localhost:8080/
-    oauth:
+      path: /food-client-service/**
+      serviceId: food-client-service
+    oauth-service:
       path: /oauth-service/**
-      url: http://localhost:9999/
+      serviceId: oauth-service

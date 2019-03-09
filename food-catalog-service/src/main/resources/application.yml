@@ -1,9 +1,9 @@
 server:
-  port: 9999
+  port: 8080
 
 spring:
   application:
-    name: oauth-service
+    name: food-catalog-service
 
 eureka:
   client:
