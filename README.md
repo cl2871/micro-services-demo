@@ -1,6 +1,6 @@
 # README
 
-## Overview:
+## Overview
 
 This project represents a secured microservices architecture that ensures all requests for backend resources are authorized. 
 
@@ -27,7 +27,7 @@ In order to get access to the backend resources, a request would need to be auth
 
 ## Usage Information
 
-### Ports:
+### Ports
 - oauth-service: 9999
 - edge-service: 8765
 - eureka-service: 8761
@@ -36,7 +36,7 @@ In order to get access to the backend resources, a request would need to be auth
 
 Make sure to start the eureka service first.
 
-## Multiple Instances
+### Multiple Instances
 
 To run multiple instances of a microservice application, you can add the following VM option to the command line or run configuration.
 
@@ -44,13 +44,13 @@ To run multiple instances of a microservice application, you can add the followi
 
 ### Auth
 
-Get access token from the authorization server
+To get access token from the authorization server, send a request with a client_id (reader) and client_secret (readerSecret) to a URI. The grant_type used here is the password grant.
 
 ```
 curl reader:readerSecret@localhost:9999/oauth/token -d grant_type=password -d username=user -d password=secret
 ```
 
-Passing token
+After getting an access token from the previous step, pass it in as a Bearer token.
 
 ```
 curl -H "Authorization: Bearer $token" localhost:8081/noodles
@@ -59,13 +59,13 @@ curl -H "Authorization: Bearer $token" localhost:8081/food-catalog-service/foods
 
 #### Auth with Gateway
 
-Same flow as before but change the url to the gateway
+Same flow as before but change the url to utilize the gateway.
 
 ```
 curl reader:readerSecret@localhost:8765/api/oauth-service/oauth/token -d grant_type=password -d username=user -d password=secret
 ```
 
-Passing token
+Pass the access token to get a backend resource.
 
 ```
 curl -H "Authorization: Bearer $token" localhost:8765/api/food-client-service/noodles
