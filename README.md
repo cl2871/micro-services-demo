@@ -36,6 +36,54 @@ In order to get access to the backend resources, a request would need to be auth
 
 Make sure to start the eureka service first.
 
+### Running and Building
+
+To run an application:
+
+```
+mvn spring-boot:run
+```
+
+To build an application:
+
+```
+mvn clean package
+```
+
+Add `-DskipTests` option to skip tests
+
+### Docker
+
+To build a Docker image:
+
+```
+docker build -t {myorg}/{myapp} 
+```
+
+To see all images:
+
+```
+docker images
+```
+
+To run a Docker container:
+
+```
+docker run --name {myAppName} -p{hostPort}:{containerPort} -d {myOrg}/{myApp}
+```
+
+To see all running instances:
+
+```
+docker ps -a
+```
+
+To stop and remove an instance:
+```
+docker stop {myAppName}
+docker rm {myAppName}
+```
+
 ### Multiple Instances
 
 To run multiple instances of a microservice application, you can add the following VM option to the command line or run configuration.
